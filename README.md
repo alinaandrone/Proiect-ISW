@@ -1,4 +1,9 @@
 # Proiect-ISW
-Androne Alina-team leader
-Marin Catalina-frontend
-Petrea Gabriel-backend
+Membrii echipei:
+
+Androne Alina-team leader;
+Marin Catalina-frontend;
+Petrea Gabriel-backend;
+
+Tehnologii folosite:
+SpringBoot, React, MySQL
