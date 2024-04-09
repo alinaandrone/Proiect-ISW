@@ -41,4 +41,9 @@ public class GradeController {
     public List<Grade> getAllGrades() {
         return gradeService.getAllGrades();
     }
+
+    @GetMapping("/student/{studentId}")
+    public List<Grade> getGradesByStudentId(@PathVariable Integer studentId) {
+        return gradeService.getGradesByStudentId(studentId);
+    }
 }

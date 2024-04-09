@@ -34,4 +34,8 @@ public class GradeService {
     public List<Grade> getAllGrades() {
         return gradeRepository.findAll();
     }
+
+    public List<Grade> getGradesByStudentId(Integer studentId) {
+        return gradeRepository.findByStudentUserId(studentId);
+    }
 }
