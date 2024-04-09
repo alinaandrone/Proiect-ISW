@@ -20,5 +20,19 @@ public class GradeController {
         return gradeService.addGrade(grade);
     }
 
+   
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Grade> getGradeById(@PathVariable Integer id) {
+        return gradeService.getGradeById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+
+
+    @GetMapping
+    public List<Grade> getAllGrades() {
+        return gradeService.getAllGrades();
+    }
 }

@@ -20,4 +20,14 @@ public class GradeService {
     }
 
 
+
+    public Optional<Grade> getGradeById(Integer id) {
+        return gradeRepository.findById(id);
+    }
+
+
+
+    public List<Grade> getAllGrades() {
+        return gradeRepository.findAll();
+    }
 }
