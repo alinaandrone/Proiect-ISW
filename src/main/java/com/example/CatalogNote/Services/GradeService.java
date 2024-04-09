@@ -19,7 +19,9 @@ public class GradeService {
         return gradeRepository.save(grade);
     }
 
-
+    public Grade updateGrade(Grade grade) {
+        return gradeRepository.save(grade);
+    }
 
     public Optional<Grade> getGradeById(Integer id) {
         return gradeRepository.findById(id);

@@ -20,7 +20,10 @@ public class GradeController {
         return gradeService.addGrade(grade);
     }
 
-
+    @PutMapping
+    public Grade updateGrade(@RequestBody Grade grade) {
+        return gradeService.updateGrade(grade);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Grade> getGradeById(@PathVariable Integer id) {
