@@ -20,7 +20,17 @@ public class UserController {
         return userService.registerUser(user);
     }
 
-
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestParam String email, @RequestParam String password) {
+        User user = userService.loginUser(email, password);
+        if (user != null) {
+            // Omit sensitive information like password before returning
+            user.setPassword_hash(null);
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
+        }
+    }
 
 
     @GetMapping("/users")

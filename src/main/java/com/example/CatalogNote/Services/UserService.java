@@ -22,17 +22,31 @@ public class UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     public User registerUser(User user) {
-        System.out.println(user);
+        // Codificarea parolei
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword_hash());
         user.setPassword_hash(encodedPassword);
 
-        Role defaultRole = roleRepository.findById(1).orElseThrow(() -> new RuntimeException("Default role not found"));
-        user.setRole(defaultRole);
+        // Verificarea și setarea rolului pe baza role_id furnizat
+        if (user.getRole() != null && user.getRole().getRole_id() != null) {
+            Role chosenRole = roleRepository.findById(user.getRole().getRole_id())
+                    .orElseThrow(() -> new RuntimeException("Role not found"));
+            user.setRole(chosenRole);
+        } else {
+            throw new RuntimeException("Role must be provided");
+        }
 
+        // Salvarea utilizatorului în baza de date
         return userRepository.save(user);
     }
 
-  
+
+    public User loginUser(String email, String password) {
+        User user = userRepository.findByEmail(email);
+        if (user != null && bCryptPasswordEncoder.matches(password, user.getPassword_hash())) {
+            return user;
+        }
+        return null;
+    }
 
 
     public List<User> getAllUsers() {
