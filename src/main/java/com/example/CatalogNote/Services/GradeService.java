@@ -25,7 +25,9 @@ public class GradeService {
         return gradeRepository.findById(id);
     }
 
-
+    public void deleteGrade(Integer id) {
+        gradeRepository.deleteById(id);
+    }
 
     public List<Grade> getAllGrades() {
         return gradeRepository.findAll();

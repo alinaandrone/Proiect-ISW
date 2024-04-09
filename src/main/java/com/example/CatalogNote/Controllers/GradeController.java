@@ -20,7 +20,7 @@ public class GradeController {
         return gradeService.addGrade(grade);
     }
 
-   
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Grade> getGradeById(@PathVariable Integer id) {
@@ -29,7 +29,10 @@ public class GradeController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-
+    @DeleteMapping("/{id}")
+    public void deleteGrade(@PathVariable Integer id) {
+        gradeService.deleteGrade(id);
+    }
 
     @GetMapping
     public List<Grade> getAllGrades() {
