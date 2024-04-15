@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios'; // Import Axios
 
 const AuthContext = createContext();
 
@@ -20,8 +20,20 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-         
+            // Construct the URL with query parameters
+            const url = `http://localhost:8081/auth/login?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
+    
+            console.log(url)
+            // Perform the GET request; note that this isn't the recommended way to transmit sensitive data
+            const response = await axios.post(url);
+    
+            const { data } = response;
+    
+            // Assuming 'data' contains the user object or auth token
+            localStorage.setItem('user', JSON.stringify(data));
+            setUser(data);
 
+    
             navigate('/'); // Redirect to homepage or dashboard after login
         } catch (error) {
             console.error("Login failed: ", error.response || error);
