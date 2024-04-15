@@ -7,7 +7,7 @@ const Navbar = ({ user, logout }) => {
         <div className='h-24 bg-gray-500 flex items-center'>
             <div className='flex justify-between w-full px-12'>
                 <Link to='/'>
-                <h2>Hello, {user.name}</h2>
+                <h2>Hello, {user?.name}</h2>
                 </Link>
                 {user.role.role_name === 'admin' && (
                     <div>
@@ -23,8 +23,10 @@ const Navbar = ({ user, logout }) => {
                 )}
                 {user.role.role_name === 'teacher' && (
                     <div>
+                    <Link to='/note'>
                         <h2>Note a student</h2>
-                    </div>
+                    </Link>
+                </div>
                 )}
                 <button className='bg-red-500 p-4 rounded-md' onClick={logout}>Sign Out</button>
             </div>
